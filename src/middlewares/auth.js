@@ -10,7 +10,7 @@ const userAuth = async (req, res, next) => {
         .send("Authentication failed: Token is missing. Please log in again.");
     }
 
-    const DecodeObj = await jwt.verify(token, "vivek@sjbeddhjugd#er");
+    const DecodeObj = await jwt.verify(token, process.env.JWT_SECRET);
     const { _id } = DecodeObj;
     const user = await User.findById(_id);
     if (!user) {
